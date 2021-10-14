@@ -1,0 +1,25 @@
+import { Col } from 'react-bootstrap';
+import { IProduct } from 'types';
+import imageUrlParser from 'utils/imageUrlParser';
+interface IProductProp {
+  product: IProduct;
+}
+const Product = ({ product }: IProductProp) => {
+  const { name, image } = product;
+  console.log('imageURL', imageUrlParser(image));
+  return (
+    <Col lg={3} md={4}>
+      <div>
+        <img
+          src={imageUrlParser(image)}
+          className="img-fluid"
+          style={{ width: '5rem', height: '7rem' }}
+          alt="picture"
+        />
+      </div>
+      <p className="product_name">{name}</p>
+    </Col>
+  );
+};
+
+export default Product;

@@ -4,4 +4,16 @@
       color: $primary;
     }
   }
+  .middle-header {
+    .branding {
+      width: 5rem;
+      height: 2rem;
+    }
+    .icon-list {
+      li {
+        font-size: 1rem;
+        text-align: center;
+      }
+    }
+  }
 }
