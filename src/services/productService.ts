@@ -3,7 +3,7 @@ import request from 'services/httpService';
 class ProductService {
   // here we will call  product related api
 
-  getProduct(): Promise<any> {
+  getProducts(): Promise<any> {
     // here instead of <any> , it should be <IProduct>
     return request.get('/product'); // https://fvaly.herokuapp.com/api/product this api is provided by programming hero
   }
