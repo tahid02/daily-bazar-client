@@ -1,23 +1,82 @@
+// import { useEffect, useState } from 'react';
+// import { useParams } from 'react-router';
+// import { IProduct } from 'types';
+
+// interface IParams {
+//   id: string;
+// }
+// const ProductDetails = () => {
+//   const { id } = useParams<IParams>();
+//   const [data, setData] = useState({} as IProduct);
+//   useEffect(() => {
+//     fetch('https://fvaly.herokuapp.com/api/product' + '/' + id)
+//       .then((res) => res.json())
+//       .then((info) => setData(info.data));
+//   }, []);
+//   console.log('product detail data', data);
+
+//   return (
+//     <div className="product__details__component my-3">
+//       product detail page {data.name}
+//     </div>
+//   );
+// };
+
+// export default ProductDetails;
+
+/// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// /////////////////////////////////////////////////////////////////////////////////////////
+
 import useAsync from 'hooks/useAsync';
-import { Container } from 'react-bootstrap';
-import { useParams } from 'react-router';
-import productService from 'services/productService';
+import { Col, Container, Row } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import ProductService from 'services/productService';
 import { IProduct } from 'types';
+import imageUrlParser from 'utils/imageUrlParser';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { useCallback } from 'react';
 interface IParams {
   id: string;
 }
-const ProductDetail = () => {
+const ProductDetails = () => {
   const { id } = useParams<IParams>();
-  const { data, isLoading } = useAsync(() => productService.getProductByID(id));
-  console.log('product detail data', data);
+  const getProduct = useCallback(() => {
+    return ProductService.getProductByID(id);
+  }, [id]);
+
+  const { data, isLoading, isSuccess, isError, error } = useAsync(getProduct);
+  console.log('product detail page', data);
+  const { name, image, description, price } = data.data;
   return (
-    <div>
-      product detail page
+    <div className="product__details__component my-3">
       <Container>
-        <div className="wrapper"></div>
+        <div className="wrapper bg-white rounded border p-5">
+          {isLoading && <h3>Loading ....</h3>}
+          {isSuccess && (
+            <Row>
+              <Col md={6}>
+                <img
+                  className="img-fluid"
+                  src={imageUrlParser(data ? image : '')}
+                  alt={name}
+                />
+              </Col>
+              <Col md={6}>
+                <h3>{name}</h3>
+                <h1 className="mt-3 mb-5">$ {price}</h1>
+                <button className="btn btn-primary">
+                  <AiOutlineShoppingCart />
+                  <span className="ms-2">Add to Cart</span>
+                </button>
+                <p className="mt-5">{description}</p>
+              </Col>
+            </Row>
+          )}
+          {isError && <h1>{error}</h1>}
+        </div>
       </Container>
     </div>
   );
 };
 
-export default ProductDetail;
+export default ProductDetails;
