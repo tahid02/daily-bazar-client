@@ -1,7 +1,7 @@
 import CartItem from 'components/checkout/CartItem';
 import { Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearTheCart } from 'redux/actions/cartAction';
+import { clearTheCart } from 'redux/actionCreators/cartAction';
 import { AppState } from 'redux/reducers/rootReducer';
 import { IProduct } from 'types';
 

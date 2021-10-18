@@ -1,38 +1,34 @@
 import { IProduct } from 'types';
 import { ActionType } from 'redux/actionTypes';
-import { type } from 'os';
-export const addToCart = (payload: IProduct) => {
-  return {
-    type: ActionType.ADD_TO_CART,
-    payload,
-  };
-};
-export const removeFromCart = (id: String) => {
-  return {
-    type: ActionType.REMOVE_FROM_CART,
-    payload: id,
-  };
-};
-export const clearTheCart = () => {
-  return {
-    type: ActionType.CLEAR_THE_CART,
-    payload: '',
-  };
-};
 
-export type CartAction =
-  | ReturnType<typeof addToCart>
-  | ReturnType<typeof removeFromCart>
-  | ReturnType<typeof clearTheCart>;
+interface IAddToCart {
+  type: ActionType.ADD_TO_CART;
+  payload: IProduct;
+}
+interface IRemoveFromCart {
+  type: ActionType.REMOVE_FROM_CART;
+  payload: string;
+}
+interface IClearTheCart {
+  type: ActionType.CLEAR_THE_CART;
+}
+
+export type CartAction = IAddToCart | IRemoveFromCart | IClearTheCart;
+
+// export type CartAction =
+//   | ReturnType<typeof addToCart>
+//   | ReturnType<typeof removeFromCart>
+//   | ReturnType<typeof clearTheCart>;
 
 // Output of type CartAction while hovering over it
 //  type CartAction = {
-//     type: ActionType;
+//     type: ActionType; // but here we want type:"add_to_cart"
 //     payload: IProduct;
 // } | {
-//     type: ActionType;
+//     type: ActionType; // but here we want type:"remove_from_cart"
 //     payload: String;
 // } | {
-//     type: ActionType;
+//     type: ActionType; // but here we want type:"clear_the_cart"  because ts inferring all's
+// type as "ActionType", so , we will do it manually by interface in actionTypes folder
 //     payload: string;
 // }

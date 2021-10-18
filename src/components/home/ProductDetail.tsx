@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import { addToCart } from 'redux/actions/cartAction';
+import { addToCart } from 'redux/actionCreators/cartAction';
 import { IProduct } from 'types';
 import imageUrlParser from 'utils/imageUrlParser';
 
