@@ -12,8 +12,12 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { FaMobileAlt, FaSignOutAlt } from 'react-icons/fa';
 import logo from 'assets/images/evaly-logo.png';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { IProduct } from 'types';
+import { AppState } from 'redux/reducers/rootReducer';
 
 const Header = () => {
+  const cart: IProduct[] = useSelector((state: AppState) => state.cart);
   return (
     <div className="header_component">
       <div className="top-header">
@@ -58,7 +62,7 @@ const Header = () => {
               <li>
                 <Link to="/checkout">
                   <FiShoppingBag />
-                  {/* <span className="badge bg-primary">{cart.length}</span> */}
+                  <span className="badge bg-primary">{cart.length}</span>
                 </Link>
               </li>
 

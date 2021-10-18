@@ -1,5 +1,6 @@
 import { IProduct } from 'types';
 import { ActionType } from 'redux/actionTypes';
+import { type } from 'os';
 export const addToCart = (payload: IProduct) => {
   return {
     type: ActionType.ADD_TO_CART,
@@ -18,3 +19,20 @@ export const clearTheCart = () => {
     payload: '',
   };
 };
+
+export type CartAction =
+  | ReturnType<typeof addToCart>
+  | ReturnType<typeof removeFromCart>
+  | ReturnType<typeof clearTheCart>;
+
+// Output of type CartAction while hovering over it
+//  type CartAction = {
+//     type: ActionType;
+//     payload: IProduct;
+// } | {
+//     type: ActionType;
+//     payload: String;
+// } | {
+//     type: ActionType;
+//     payload: string;
+// }
