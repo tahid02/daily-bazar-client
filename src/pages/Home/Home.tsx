@@ -3,7 +3,7 @@ import Products from 'components/home/Products';
 import { useEffect, useState } from 'react';
 import { IProduct } from 'types';
 import axios from 'axios';
-import productService from 'services/productService';
+import productService from 'services/ProductService';
 import useAsync from 'hooks/useAsync';
 import Header from 'components/common/Header';
 const Home = () => {

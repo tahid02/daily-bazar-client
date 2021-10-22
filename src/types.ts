@@ -7,3 +7,12 @@ export interface IProduct {
   image: string;
   price: number;
 }
+
+export interface IAuthData {
+  name: string;
+  email: string;
+  id: string;
+  role: string;
+  status: string;
+  token: string;
+}

@@ -66,7 +66,7 @@ export default ProductDetails;
 // import useAsync from 'hooks/useAsync';
 // import { Col, Container, Row } from 'react-bootstrap';
 // import { useParams } from 'react-router-dom';
-// import ProductService from 'services/productService';
+// import ProductService from 'services/ProductService';
 // import { IProduct } from 'types';
 // import imageUrlParser from 'utils/imageUrlParser';
 // import { AiOutlineShoppingCart } from 'react-icons/ai';
