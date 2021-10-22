@@ -17,7 +17,7 @@ const LoginForm = () => {
     password: '',
   });
 
-  const data = useSelector((state: AppState) => state.auth);
+  const { data, status, error } = useSelector((state: AppState) => state.auth);
 
   const dispatch = useDispatch();
 
@@ -33,11 +33,11 @@ const LoginForm = () => {
       <Container>
         <div className="login_main py-5">
           <Row>
-            {/* {status === 'error' && (
+            {status === 'error' && (
               <Col md={{ span: 4, offset: 4 }} className="p-0">
                 <Alert variant="primary">{error}</Alert>
               </Col>
-            )} */}
+            )}
             <Col
               md={{ span: 4, offset: 4 }}
               className="float-center bg-white p-5 shadow-sm rounded"
