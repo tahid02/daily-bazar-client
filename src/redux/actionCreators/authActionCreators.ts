@@ -23,3 +23,9 @@ export const login = (payload: { email: string; password: string }) => {
       });
   };
 };
+
+export const logout = (): AuthAction => {
+  return {
+    type: ActionType.LOG_OUT,
+  };
+};

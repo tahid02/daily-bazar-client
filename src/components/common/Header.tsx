@@ -12,12 +12,15 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { FaMobileAlt, FaSignOutAlt } from 'react-icons/fa';
 import logo from 'assets/images/evaly-logo.png';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { IProduct } from 'types';
 import { AppState } from 'redux/reducers/rootReducer';
+import { logout } from 'redux/actionCreators/authActionCreators';
 
 const Header = () => {
   const cart: IProduct[] = useSelector((state: AppState) => state.cart);
+  const { data } = useSelector((state: AppState) => state.auth);
+  const dispatch = useDispatch();
   return (
     <div className="header_component">
       <div className="top-header">
@@ -71,12 +74,11 @@ const Header = () => {
                   <BiUser />
                 </Link>
               </li>
-              {/* {data && ( */}
-              <li className="btn p-0">
-                {/* <FaSignOutAlt onClick={() => dispatch(logout())} /> */}
-                <FaSignOutAlt />
-              </li>
-              {/* )} */}
+              {data && (
+                <li className="btn p-0">
+                  <FaSignOutAlt onClick={() => dispatch(logout())} />
+                </li>
+              )}
             </ul>
           </div>
         </Container>
