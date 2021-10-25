@@ -6,8 +6,33 @@ const instance = axios.create({
   timeout: 10000,
 });
 
+// Add a request interceptor
+// axios.interceptors.request.use(function (config) {
+instance.interceptors.request.use(
+  function (config) {
+    // Do something before request is sent
+    console.log({ instance });
+    console.log('api is calling');
+    return {
+      ...config, // taking previously configed info : baseURL, timeout
+      headers: {
+        // Authentication:"token from local storage by redux persistor"
+        Authentication: JSON.parse(
+          JSON.parse(localStorage.getItem('persist:root') || '').auth
+        )?.data?.token,
+      },
+    };
+  },
+  function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  }
+);
 // axios.get("url").then(res=> res.data)
-const responseBody = (res: AxiosResponse) => res.data;
+const responseBody = (res: AxiosResponse) => {
+  console.log({ res });
+  return res.data;
+};
 
 const get = (url: string) => {
   // console.log("url check",process.env.REACT_APP_API_BASE_URL)
